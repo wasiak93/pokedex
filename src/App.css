@@ -26,9 +26,7 @@
 
 .header__input {
   border: none;
-  /* margin-top: 40px; */
   padding: 0 0 5px 0px;
-  /* width: 50px; */
   font-size: 14px;
   cursor: pointer;
   outline: none;
@@ -88,8 +86,6 @@
   margin-top: 20px;
   align-self: center;
   outline: none;
-  /* width: 220px; */
-  /* height: 50px; */
   padding: 10px 30px;
   font-size: 28px;
   background-color: orange;

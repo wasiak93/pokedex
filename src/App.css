@@ -9,10 +9,14 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .header__title {
+  font-size: 34px;
+  margin: 0 20px 40px 0;
   color: orange;
 }
 
@@ -22,7 +26,9 @@
 
 .header__input {
   border: none;
-  padding: 10px;
+  /* margin-top: 40px; */
+  padding: 0 0 5px 0px;
+  /* width: 50px; */
   font-size: 14px;
   cursor: pointer;
   outline: none;
@@ -32,8 +38,7 @@
 }
 
 .header__input-subtitle {
-  padding-top: 10px;
-  padding-left: 10px;
+  padding: 5px 0 0 0px;
   font-size: 14px;
   color: #555;
   height: 36px;
@@ -48,11 +53,11 @@
 .cards--wrapper {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card {
-  text-align: center;
-  margin: 30px 10px;
+  margin: 20px 10px;
   font-size: 12px;
 }
 
@@ -72,7 +77,7 @@
 }
 
 .card__span--bigger {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .loader {
@@ -83,10 +88,18 @@
   margin-top: 20px;
   align-self: center;
   outline: none;
-  width: 220px;
-  height: 50px;
-  font-size: 30px;
+  /* width: 220px; */
+  /* height: 50px; */
+  padding: 10px 30px;
+  font-size: 28px;
   background-color: orange;
   color: white;
   border: none;
+}
+
+@media (min-width: 540px) {
+  .header {
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
 }

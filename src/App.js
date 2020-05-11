@@ -106,17 +106,17 @@ const App = () => {
             placeholder="Search"
           />
           <div className="header__line"></div>
-          <div className="header__input-subtitle">
-            {inputValue ? "Search" : null}
-          </div>
+          <div className="header__input-subtitle">{inputValue && "Search"}</div>
         </div>
       </div>
 
       <div className="cards--wrapper">{inputValue ? cardsFilter : cards}</div>
       {isLoading ? <p className="loader">"loading"</p> : null}
-      <button className="button" onClick={handlerButton}>
-        Load More
-      </button>
+      {!inputValue && !isLoading ? (
+        <button className="button" onClick={handlerButton}>
+          Load More
+        </button>
+      ) : null}
     </div>
   );
 };

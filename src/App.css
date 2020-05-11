@@ -24,12 +24,22 @@
   border: none;
   padding: 10px;
   font-size: 14px;
-  /* padding-bottom: 0px; */
   cursor: pointer;
   outline: none;
 }
+.header__input::placeholder {
+  color: #555;
+}
 
-.input__line {
+.header__input-subtitle {
+  padding-top: 10px;
+  padding-left: 10px;
+  font-size: 14px;
+  color: #555;
+  height: 36px;
+}
+
+.header__line {
   height: 3px;
   width: 100%;
   background-color: orange;
@@ -38,7 +48,6 @@
 .cards--wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .card {

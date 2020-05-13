@@ -1,13 +1,13 @@
-.wrapper {
+.catalog {
   display: flex;
   flex-direction: column;
   width: 95%;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: auto;
   padding: 20px 0px;
 }
 
-.header {
+.catalog__header {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -25,12 +25,15 @@
 }
 
 .header__input {
+  font-family: 'Lato', sans-serif;
+  width: 200px;
   border: none;
   padding: 0 0 5px 0px;
   font-size: 14px;
   cursor: pointer;
   outline: none;
 }
+
 .header__input::placeholder {
   color: #555;
 }
@@ -48,7 +51,11 @@
   background-color: orange;
 }
 
-.cards--wrapper {
+.header__line--red {
+  background-color: red
+}
+
+.cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -93,9 +100,8 @@
   border: none;
 }
 
-@media (min-width: 540px) {
-  .header {
+@media (min-width: 500px) {
+  .catalog__header {
     justify-content: space-between;
-    margin-bottom: 20px;
   }
 }

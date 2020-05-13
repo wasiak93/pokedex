@@ -20,8 +20,8 @@ const App = () => {
         }
         return response.json();
       })
-      .then((data) => {
-        setCardsArray([...data.cards]);
+      .then(({ cards }) => {
+        setCardsArray([...cards]);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -42,8 +42,8 @@ const App = () => {
 
   const handlerInput = (e) => {
     const value = e.target.value;
-    let newCards = cardsArray.filter((card) =>
-      card.name.toLowerCase().includes(value)
+    let newCards = cardsArray.filter(({ name }) =>
+      name.toLowerCase().includes(value.toLowerCase())
     );
     setCardsArrayFilter(newCards);
     setInputValue(value);
@@ -92,12 +92,12 @@ const App = () => {
     )
   );
   return (
-    <div className="wrapper">
-      <div className="header">
+    <div className="catalog">
+      <div className="catalog__header header">
         <h1 className="header__title">
           Pokemon <span className="header__span">catalog</span>
         </h1>
-        <div className="input__wrapper">
+        <div className="header__container">
           <input
             type="text"
             value={inputValue}
@@ -105,12 +105,16 @@ const App = () => {
             onChange={handlerInput}
             placeholder="Search"
           />
-          <div className="header__line"></div>
+          <div
+            className={
+              inputValue ? "header__line header__line--red" : "header__line"
+            }
+          ></div>
           <div className="header__input-subtitle">{inputValue && "Search"}</div>
         </div>
       </div>
 
-      <div className="cards--wrapper">{inputValue ? cardsFilter : cards}</div>
+      <div className="cards">{inputValue ? cardsFilter : cards}</div>
       {isLoading ? <p className="loader">"loading"</p> : null}
       {!inputValue && !isLoading ? (
         <button className="button" onClick={handlerButton}>

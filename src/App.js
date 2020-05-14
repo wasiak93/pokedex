@@ -10,7 +10,7 @@ const App = () => {
   const [cardsArrayFilter, setCardsArrayFilter] = useState([]);
   const [number, setNumber] = useState(numberFetchingCards);
   const [url, setUrl] = useState(
-    `https://api.pokemontcg.io/v1/cards?pageSize=${number}`
+    `https://cors-anywhere.herokuapp.com/https://api.pokemontcg.io/v1/cards?pageSize=${number}`
   );
   const [isLoading, setIsLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -43,7 +43,9 @@ const App = () => {
   const handlerButton = () => {
     const newNumber = number + numberFetchingCards;
     setNumber(newNumber);
-    setUrl(`https://api.pokemontcg.io/v1/cards?pageSize=${newNumber}`);
+    setUrl(
+      `https://cors-anywhere.herokuapp.com/https://api.pokemontcg.io/v1/cards?pageSize=${newNumber}`
+    );
   };
 
   const handlerInput = (e) => {

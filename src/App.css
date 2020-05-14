@@ -67,6 +67,8 @@
 
 .card__type-name {
   margin: 5px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .card__title {

@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import "./App.css";
+import LoadingIndicator from "./LoadingIndicator";
+import { trackPromise } from "react-promise-tracker";
 
 const numberFetchingCards = 8;
 
@@ -15,21 +17,23 @@ const App = () => {
 
   const fetchData = useCallback(() => {
     setIsLoading(true);
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw Error("Something gone wrong");
-        }
-        return response.json();
-      })
-      .then(({ cards }) => {
-        setCardsArray([...cards]);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setIsLoading(false);
-      });
+    trackPromise(
+      fetch(url)
+        .then((response) => {
+          if (!response.ok) {
+            throw Error("Something gone wrong");
+          }
+          return response.json();
+        })
+        .then(({ cards }) => {
+          setCardsArray([...cards]);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error(error);
+          setIsLoading(false);
+        })
+    );
   }, [url]);
 
   useEffect(() => {
@@ -117,7 +121,7 @@ const App = () => {
       </div>
 
       <div className="catalog__cards">{inputValue ? cardsFilter : cards}</div>
-      {isLoading && <p className="catalog__loader">"loading"</p>}
+      <LoadingIndicator />
       {!inputValue && !isLoading ? (
         <button className="catalog__button" onClick={handlerButton}>
           Load {numberFetchingCards} more cards

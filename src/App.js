@@ -10,10 +10,11 @@ const App = () => {
   const [cardsArrayFilter, setCardsArrayFilter] = useState([]);
   const [number, setNumber] = useState(numberFetchingCards);
   const [url, setUrl] = useState(
-    `https://cors-anywhere.herokuapp.com/https://api.pokemontcg.io/v1/cards?pageSize=${number}`
+    `https://api.pokemontcg.io/v1/cards?pageSize=${number}`
   );
   const [isLoading, setIsLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [error, setError] = useState(false);
 
   const fetchData = useCallback(() => {
     setIsLoading(true);
@@ -21,16 +22,19 @@ const App = () => {
       fetch(url)
         .then((response) => {
           if (!response.ok) {
+            setError(true);
             throw Error("Something gone wrong");
           }
           return response.json();
         })
         .then(({ cards }) => {
+          setError(false);
           setCardsArray([...cards]);
           setIsLoading(false);
         })
         .catch((error) => {
           console.error(error);
+          setError(true);
           setIsLoading(false);
         })
     );
@@ -43,9 +47,7 @@ const App = () => {
   const handlerButton = () => {
     const newNumber = number + numberFetchingCards;
     setNumber(newNumber);
-    setUrl(
-      `https://cors-anywhere.herokuapp.com/https://api.pokemontcg.io/v1/cards?pageSize=${newNumber}`
-    );
+    setUrl(`https://api.pokemontcg.io/v1/cards?pageSize=${newNumber}`);
   };
 
   const handlerInput = (e) => {
@@ -121,10 +123,10 @@ const App = () => {
           <div className="header__input-subtitle">{inputValue && "Search"}</div>
         </div>
       </div>
-
+      {error && <p className="error">Ooooops, something gone wrong</p>}{" "}
       <div className="catalog__cards">{inputValue ? cardsFilter : cards}</div>
       <LoadingIndicator />
-      {!inputValue && !isLoading ? (
+      {!inputValue && !isLoading && !error ? (
         <button className="catalog__button" onClick={handlerButton}>
           Load {numberFetchingCards} more cards
         </button>

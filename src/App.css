@@ -109,6 +109,11 @@
   background-color: brown;
 }
 
+.error {
+  font-size: 34px;
+  text-align: center;
+}
+
 @media (min-width: 550px) {
   .catalog__header {
     justify-content: space-between;

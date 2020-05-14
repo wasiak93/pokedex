@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useCallback } from "react";
 import "./App.css";
 
+const numberFetchingCards = 8;
+
 const App = () => {
   const [cardsArray, setCardsArray] = useState([]);
   const [cardsArrayFilter, setCardsArrayFilter] = useState([]);
-  const [number, setNumber] = useState(4);
+  const [number, setNumber] = useState(numberFetchingCards);
   const [url, setUrl] = useState(
     `https://api.pokemontcg.io/v1/cards?pageSize=${number}`
   );
@@ -35,7 +37,7 @@ const App = () => {
   }, [fetchData]);
 
   const handlerButton = () => {
-    const newNumber = number + 4;
+    const newNumber = number + numberFetchingCards;
     setNumber(newNumber);
     setUrl(`https://api.pokemontcg.io/v1/cards?pageSize=${newNumber}`);
   };
@@ -118,7 +120,7 @@ const App = () => {
       {isLoading && <p className="catalog__loader">"loading"</p>}
       {!inputValue && !isLoading ? (
         <button className="catalog__button" onClick={handlerButton}>
-          Load More
+          Load {numberFetchingCards} more cards
         </button>
       ) : null}
     </div>

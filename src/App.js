@@ -52,20 +52,20 @@ const App = () => {
   const cards = cardsArray.map(
     ({ id, name, imageUrl, supertype, subtype, rarity, number }) => (
       <div key={id} className="card">
-        <p className="card__acapit card__acapit--flex">
-          <span className="card__span card__span--bigger">{name}</span>
+        <p className="card__title">
+          <span className="card__name">{name}</span>
           Nr: {number}
         </p>
         <img src={imageUrl} alt="pokemon" className="card__img" />
-        <p className="card__acapit">
-          <span className="card__span">Superttype: </span>
+        <p className="card__type-name">
+          <span className="card__type">Superttype: </span>
           {supertype}
         </p>
-        <p className="card__acapit">
-          <span className="card__span">Subtype: </span> {subtype}
+        <p className="card__type-name">
+          <span className="card__type">Subtype: </span> {subtype}
         </p>
-        <p className="card__acapit">
-          <span className="card__span">Rarity: </span> {rarity}
+        <p className="card__type-name">
+          <span className="card__type">Rarity: </span> {rarity}
         </p>
       </div>
     )
@@ -73,20 +73,20 @@ const App = () => {
   const cardsFilter = cardsArrayFilter.map(
     ({ id, name, imageUrl, supertype, subtype, rarity, number }) => (
       <div key={id} className="card">
-        <p className="card__acapit card__acapit--flex">
-          <span className="card__span card__span--bigger">{name}</span>
+        <p className="card__title">
+          <span className="card__name">{name}</span>
           Nr: {number}
         </p>
         <img src={imageUrl} alt="pokemon" className="card__img" />
-        <p className="card__acapit">
-          <span className="card__span">Superttype: </span>
+        <p className="card__type-name">
+          <span className="card__type">Superttype: </span>
           {supertype}
         </p>
-        <p className="card__acapit">
-          <span className="card__span">Subtype: </span> {subtype}
+        <p className="card__type-name">
+          <span className="card__type">Subtype: </span> {subtype}
         </p>
-        <p className="card__acapit">
-          <span className="card__span">Rarity: </span> {rarity}
+        <p className="card__type-name">
+          <span className="card__type">Rarity: </span> {rarity}
         </p>
       </div>
     )
@@ -95,7 +95,7 @@ const App = () => {
     <div className="catalog">
       <div className="catalog__header header">
         <h1 className="header__title">
-          Pokemon <span className="header__span">catalog</span>
+          Pokemon <span className="header__title--brown">catalog</span>
         </h1>
         <div className="header__container">
           <input
@@ -114,10 +114,10 @@ const App = () => {
         </div>
       </div>
 
-      <div className="cards">{inputValue ? cardsFilter : cards}</div>
-      {isLoading ? <p className="loader">"loading"</p> : null}
+      <div className="catalog__cards">{inputValue ? cardsFilter : cards}</div>
+      {isLoading && <p className="catalog__loader">"loading"</p>}
       {!inputValue && !isLoading ? (
-        <button className="button" onClick={handlerButton}>
+        <button className="catalog__button" onClick={handlerButton}>
           Load More
         </button>
       ) : null}

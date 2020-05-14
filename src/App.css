@@ -28,7 +28,7 @@
   border: none;
   padding-bottom: 5px;
   font-size: 14px;
-  cursor: pointer;
+  /* cursor: pointer; */
   outline: none;
   background-color: rgba(240, 240, 240, 0.3);
 }
@@ -100,6 +100,7 @@
   color: white;
   border: none;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .catalog__button:hover {

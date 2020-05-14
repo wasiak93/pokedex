@@ -59,28 +59,9 @@ const App = () => {
     setInputValue(value);
   };
 
-  const cards = cardsArray.map(
-    ({ id, name, imageUrl, supertype, subtype, rarity, number }) => (
-      <div key={id} className="card">
-        <p className="card__title">
-          <span className="card__name">{name}</span>
-          Nr: {number}
-        </p>
-        <img src={imageUrl} alt="pokemon" className="card__img" />
-        <p className="card__type-name">
-          <span className="card__type">Superttype: </span>
-          {supertype}
-        </p>
-        <p className="card__type-name">
-          <span className="card__type">Subtype: </span> {subtype}
-        </p>
-        <p className="card__type-name">
-          <span className="card__type">Rarity: </span> {rarity}
-        </p>
-      </div>
-    )
-  );
-  const cardsFilter = cardsArrayFilter.map(
+  const cardsToMap = inputValue ? cardsArrayFilter : cardsArray;
+
+  const cards = cardsToMap.map(
     ({ id, name, imageUrl, supertype, subtype, rarity, number }) => (
       <div key={id} className="card">
         <p className="card__title">
@@ -124,7 +105,7 @@ const App = () => {
         </div>
       </div>
       {error && <p className="error">Ooooops, something gone wrong</p>}{" "}
-      <div className="catalog__cards">{inputValue ? cardsFilter : cards}</div>
+      <div className="catalog__cards">{cards}</div>
       <LoadingIndicator />
       {!inputValue && !isLoading && !error ? (
         <button className="catalog__button" onClick={handlerButton}>

@@ -29,17 +29,18 @@
   padding-bottom: 5px;
   font-size: 14px;
   outline: none;
-  background-color: rgba(240, 240, 240, 0.3);
+  background-color: transparent;
+  color: white;
 }
 
 .header__input::placeholder {
-  color: #555;
+  color: white;
 }
 
 .header__input-subtitle {
   padding-top: 5px;
   font-size: 14px;
-  color: #555;
+  /* color: #555; */
   height: 35px;
 }
 
@@ -48,8 +49,8 @@
   background-color: orange;
 }
 
-.header__line--red {
-  background-color: red;
+.header__line--color {
+  background-color: brown;
 }
 
 .catalog__cards {
@@ -60,56 +61,10 @@
   font-size: 12px;
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-  margin: 0px 10px 10px;
-  box-shadow: 0px 8px 4px -4px #ccc;
-}
 
-.card__type-name {
-  margin: 5px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.card__title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 5px;
-}
-
-.card__type {
-  font-weight: bold;
-}
-
-.card__name {
-  font-size: 22px;
-  margin-right: 5px;
-  font-weight: bold;
-}
 
 .catalog__loader {
   align-self: center;
-}
-
-.catalog__button {
-  margin-top: 20px;
-  align-self: center;
-  outline: none;
-  padding: 10px 30px;
-  font-size: 28px;
-  background-color: orange;
-  color: white;
-  border: none;
-  transition: 0.3s;
-  cursor: pointer;
-  border-radius: 3px;
-}
-
-.catalog__button:hover {
-  background-color: brown;
 }
 
 .error {
@@ -123,13 +78,7 @@
   justify-content: center;
 }
 
-.catalog__button--smaller {
-  font-size: 12px;
-  padding: 5px;
-  margin: 5px;
-  width: 65px;
-  font-weight: bold;
-}
+
 
 @media (min-width: 550px) {
   .catalog__header {

@@ -2,6 +2,8 @@ import React, { useEffect, useState, useCallback } from "react";
 import "./App.css";
 import LoadingIndicator from "./LoadingIndicator";
 import { trackPromise } from "react-promise-tracker";
+import Button from "./components/Button";
+import Card from "./components/Card/Card";
 
 const numberFetchingCards = 500;
 
@@ -15,6 +17,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState(false);
+  const [actualType, setActualType] = useState("All");
 
   const fetchData = useCallback(() => {
     setIsLoading(true);
@@ -60,36 +63,13 @@ const App = () => {
   };
 
   const cardsToMap = inputValue ? cardsArrayFilter : cardsArray;
-
-  const cards = cardsToMap.map(
-    ({ id, name, imageUrl, supertype, subtype, rarity, number }) => (
-      <div key={id} className="card">
-        <p className="card__title">
-          <span className="card__name">{name}</span>
-          Nr: {number}
-        </p>
-        <img src={imageUrl} alt="pokemon" className="card__img" />
-        <p className="card__type-name">
-          <span className="card__type">Superttype: </span>
-          {supertype}
-        </p>
-        <p className="card__type-name">
-          <span className="card__type">Subtype: </span> {subtype}
-        </p>
-        <p className="card__type-name">
-          <span className="card__type">Rarity: </span> {rarity}
-        </p>
-      </div>
-    )
-  );
+  const cards = cardsToMap.map((card) => <Card key={card.id} {...card} />);
 
   const cardsWithTypes = cardsToMap.filter(({ types }) => types);
   const typesArray = cardsWithTypes.map(({ types }) => types[0]);
   const uniqTypes = [...new Set(typesArray)];
-  const typeButtons = uniqTypes.map((uniq, id) => (
-    <button key={id} className="catalog__button catalog__button--smaller">
-      {uniq}
-    </button>
+  const typeButtons = uniqTypes.map((type, id) => (
+    <Button key={id} nameClass="catalog__button--smaller" text={type} />
   ));
   // console.log(types);
   // ["Grass", "Fighting", "Fairy", "Metal", "Lightning", "Water", "Psychic", "Darkness", "Fire", "Colorless", "Dragon"]
@@ -109,7 +89,7 @@ const App = () => {
           />
           <div
             className={
-              inputValue ? "header__line header__line--red" : "header__line"
+              inputValue ? "header__line header__line--color" : "header__line"
             }
           ></div>
           <div className="header__input-subtitle">{inputValue && "Search"}</div>
@@ -117,9 +97,7 @@ const App = () => {
       </div>
       {!isLoading && !error ? (
         <div className="catalog__buttons-wrapper">
-          <button className="catalog__button catalog__button--smaller">
-            All
-          </button>
+          <Button nameClass="catalog__button--smaller" text="All" />
           {typeButtons}
         </div>
       ) : null}
@@ -127,9 +105,10 @@ const App = () => {
       <div className="catalog__cards">{cards}</div>
       <LoadingIndicator />
       {!inputValue && !isLoading && !error ? (
-        <button className="catalog__button" onClick={handlerButton}>
-          Load {numberFetchingCards} more cards
-        </button>
+        <Button
+          onClick={handlerButton}
+          text={`Load ${numberFetchingCards} more cards`}
+        />
       ) : null}
     </div>
   );

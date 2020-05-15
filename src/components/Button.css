@@ -1,0 +1,25 @@
+.catalog__button {
+  margin-top: 20px;
+  align-self: center;
+  outline: none;
+  padding: 10px 30px;
+  font-size: 28px;
+  background-color: orange;
+  color: white;
+  border: none;
+  transition: 0.3s;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.catalog__button:hover {
+  background-color: brown;
+}
+
+.catalog__button--smaller {
+  font-size: 12px;
+  padding: 5px;
+  margin: 5px;
+  width: 65px;
+  font-weight: bold;
+}

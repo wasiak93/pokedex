@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 95%;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 20px auto;
 }
 
@@ -55,12 +55,14 @@
 .catalog__cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   margin: 20px 10px;
   font-size: 12px;
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
   margin: 0px 10px 10px;
   box-shadow: 0px 8px 4px -4px #ccc;
 }
@@ -84,6 +86,7 @@
 
 .card__name {
   font-size: 22px;
+  margin-right: 5px;
   font-weight: bold;
 }
 
@@ -112,6 +115,20 @@
 .error {
   font-size: 34px;
   text-align: center;
+}
+
+.catalog__buttons-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.catalog__button--smaller {
+  font-size: 12px;
+  padding: 5px;
+  margin: 5px;
+  width: 65px;
+  font-weight: bold;
 }
 
 @media (min-width: 550px) {

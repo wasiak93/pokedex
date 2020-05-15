@@ -3,7 +3,7 @@ import "./App.css";
 import LoadingIndicator from "./LoadingIndicator";
 import { trackPromise } from "react-promise-tracker";
 
-const numberFetchingCards = 8;
+const numberFetchingCards = 500;
 
 const App = () => {
   const [cardsArray, setCardsArray] = useState([]);
@@ -82,6 +82,17 @@ const App = () => {
       </div>
     )
   );
+
+  const cardsWithTypes = cardsToMap.filter(({ types }) => types);
+  const typesArray = cardsWithTypes.map(({ types }) => types[0]);
+  const uniqTypes = [...new Set(typesArray)];
+  const typeButtons = uniqTypes.map((uniq, id) => (
+    <button key={id} className="catalog__button catalog__button--smaller">
+      {uniq}
+    </button>
+  ));
+  // console.log(types);
+  // ["Grass", "Fighting", "Fairy", "Metal", "Lightning", "Water", "Psychic", "Darkness", "Fire", "Colorless", "Dragon"]
   return (
     <div className="catalog">
       <div className="catalog__header header">
@@ -104,6 +115,14 @@ const App = () => {
           <div className="header__input-subtitle">{inputValue && "Search"}</div>
         </div>
       </div>
+      {!isLoading && !error ? (
+        <div className="catalog__buttons-wrapper">
+          <button className="catalog__button catalog__button--smaller">
+            All
+          </button>
+          {typeButtons}
+        </div>
+      ) : null}
       {error && <p className="error">Ooooops, something gone wrong</p>}{" "}
       <div className="catalog__cards">{cards}</div>
       <LoadingIndicator />

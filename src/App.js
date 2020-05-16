@@ -13,7 +13,6 @@ const App = () => {
   const [showingCard, setShowingCard] = useState([]);
   const [typesName, setTypesName] = useState([]);
 
-  const [cardsArrayFilter, setCardsArrayFilter] = useState([]);
   const [number, setNumber] = useState(numberFetchingCards);
   const [url, setUrl] = useState(
     `https://api.pokemontcg.io/v1/cards?pageSize=${number}`
@@ -22,9 +21,7 @@ const App = () => {
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState(false);
   const [actualType, setActualType] = useState("All");
-  const [selectedCards, setSelectedCards] = useState([...allCards]);
-  const [cardsToMap, setCardsToMap] = useState([...allCards]);
-  let uniqTypes = [];
+
   const fetchData = useCallback(() => {
     setIsLoading(true);
     trackPromise(
@@ -47,8 +44,6 @@ const App = () => {
           setShowingCard([...cardsWithTypes]);
           setIsLoading(false);
           setTypesName(uniqTypesArray);
-          // setSelectedCards([...cards]);
-          // setCardsToMap([...cards]);
         })
         .catch((error) => {
           console.error(error);
@@ -75,13 +70,11 @@ const App = () => {
     );
     setShowingCard([...newCards]);
     setInputValue(value);
-    // setCardsToMap([...newCards]);
   };
 
   const handlerButtonTypes = (name) => {
     setActualType(name);
 
-    // const buttonName = name
     const cards = allCards.filter((card) => card.types[0] === name);
     switch (name) {
       case "All":
@@ -106,8 +99,6 @@ const App = () => {
   const showArray = inputValue ? showingCard : allCardsOneType;
   const cards = showArray.map((card) => <Card key={card.id} {...card} />);
 
-  // const typesArray = allCards.map(({ types }) => types[0]);
-  // uniqTypes = [...new Set(typesArray)];
   const typeButtons = typesName.map((type, id) => (
     <Button
       key={id}
@@ -119,8 +110,6 @@ const App = () => {
       id={id}
     />
   ));
-  // console.log(types);
-  // ["Grass", "Fighting", "Fairy", "Metal", "Lightning", "Water", "Psychic", "Darkness", "Fire", "Colorless", "Dragon"]
   return (
     <div className="catalog">
       <div className="catalog__header header">

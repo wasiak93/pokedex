@@ -5,7 +5,6 @@ const Card = ({
   id,
   name,
   imageUrl,
-  supertype,
   subtype,
   rarity,
   number,
@@ -13,7 +12,7 @@ const Card = ({
   types,
 }) => {
   return (
-    <div key={id} className="card" onClick={() => onClick(id)}>
+    <div key={id} className="card" onClick={onClick ? () => onClick(id) : null}>
       <p className="card__title">
         <span className="card__name">{name}</span>
         Nr: {number}
@@ -21,7 +20,7 @@ const Card = ({
       <img src={imageUrl} alt="pokemon" className="card__img" />
       <p className="card__type-name">
         <span className="card__type">Type: </span>
-        {types[0]}
+        {/* {types[0]} */}
       </p>
       <p className="card__type-name">
         <span className="card__type">Subtype: </span> {subtype}

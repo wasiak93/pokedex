@@ -5,6 +5,7 @@ import { trackPromise } from "react-promise-tracker";
 import Button from "./components/Button/Button";
 import Card from "./components/Card/Card";
 import Header from "./components/Header/Header";
+import Popup from "./components/Popup/Popup";
 
 const numberFetchingCards = 500;
 
@@ -13,7 +14,6 @@ const App = () => {
   const [allCardsOneType, setAllCardsOneType] = useState([]);
   const [showingCard, setShowingCard] = useState([]);
   const [typesName, setTypesName] = useState([]);
-
   const [number, setNumber] = useState(numberFetchingCards);
   const [url, setUrl] = useState(
     `https://api.pokemontcg.io/v1/cards?pageSize=${number}`
@@ -22,6 +22,8 @@ const App = () => {
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState(false);
   const [actualType, setActualType] = useState("All");
+  const [openPopup, setOpenPopup] = useState(false);
+  const [cardInPopup, setCardInPopup] = useState({});
 
   const fetchData = useCallback(() => {
     setIsLoading(true);
@@ -99,7 +101,9 @@ const App = () => {
   };
 
   const handlerCardClick = (id) => {
-    console.log(id);
+    const card = allCards.filter((card) => card.id === id);
+    setOpenPopup(true);
+    setCardInPopup(card);
   };
 
   const showArray = inputValue ? showingCard : allCardsOneType;
@@ -119,30 +123,42 @@ const App = () => {
       id={id}
     />
   ));
+
+  const showPopup = openPopup && <Popup card={cardInPopup} />;
+
+  const showTypeButtons = !isLoading && !error && (
+    <div className="catalog__buttons-wrapper">
+      <Button
+        nameClass="catalog__button--smaller"
+        text="All"
+        name="All"
+        onClick={handlerButtonTypes}
+        actualType={actualType}
+      />
+      {typeButtons}
+    </div>
+  );
+
+  const showButtonMore = !inputValue && !isLoading && !error && (
+    <Button
+      onClick={handlerButton}
+      text={`Load ${numberFetchingCards} more cards`}
+    />
+  );
+
+  const showError = error && (
+    <p className="error">Ooooops, something gone wrong</p>
+  );
+
   return (
     <div className="catalog">
       <Header inputValue={inputValue} handlerInput={handlerInput} />
-      {!isLoading && !error ? (
-        <div className="catalog__buttons-wrapper">
-          <Button
-            nameClass="catalog__button--smaller"
-            text="All"
-            name="All"
-            onClick={handlerButtonTypes}
-            actualType={actualType}
-          />
-          {typeButtons}
-        </div>
-      ) : null}
+      {showTypeButtons}
+      {showPopup}
       <div className="catalog__cards">{cards}</div>
       <LoadingIndicator />
-      {!inputValue && !isLoading && !error ? (
-        <Button
-          onClick={handlerButton}
-          text={`Load ${numberFetchingCards} more cards`}
-        />
-      ) : null}
-      {error && <p className="error">Ooooops, something gone wrong</p>}{" "}
+      {showButtonMore}
+      {showError}
     </div>
   );
 };

@@ -1,0 +1,51 @@
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.header__title {
+  font-size: 34px;
+  margin: 0 20px 40px 0;
+  color: orange;
+}
+
+.header__title--brown {
+  color: brown;
+}
+
+.header__input {
+  font-family: "Lato", sans-serif;
+  width: 200px;
+  border: none;
+  padding-bottom: 5px;
+  font-size: 14px;
+  outline: none;
+  background-color: transparent;
+  color: white;
+}
+
+.header__input::placeholder {
+  color: white;
+}
+
+.header__input-subtitle {
+  padding-top: 5px;
+  font-size: 14px;
+  height: 35px;
+}
+
+.header__line {
+  height: 2px;
+  background-color: orange;
+}
+
+.header__line--color {
+  background-color: brown;
+}
+
+@media (min-width: 550px) {
+  .catalog__header {
+    justify-content: space-between;
+  }
+}

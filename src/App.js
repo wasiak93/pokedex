@@ -4,6 +4,7 @@ import LoadingIndicator from "./LoadingIndicator";
 import { trackPromise } from "react-promise-tracker";
 import Button from "./components/Button/Button";
 import Card from "./components/Card/Card";
+import Header from "./components/Header/Header";
 
 const numberFetchingCards = 500;
 
@@ -120,26 +121,7 @@ const App = () => {
   ));
   return (
     <div className="catalog">
-      <div className="catalog__header header">
-        <h1 className="header__title">
-          Pokemon <span className="header__title--brown">catalog</span>
-        </h1>
-        <div className="header__container">
-          <input
-            type="text"
-            value={inputValue}
-            className="header__input"
-            onChange={handlerInput}
-            placeholder="Search"
-          />
-          <div
-            className={
-              inputValue ? "header__line header__line--color" : "header__line"
-            }
-          ></div>
-          <div className="header__input-subtitle">{inputValue && "Search"}</div>
-        </div>
-      </div>
+      <Header inputValue={inputValue} handlerInput={handlerInput} />
       {!isLoading && !error ? (
         <div className="catalog__buttons-wrapper">
           <Button

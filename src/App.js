@@ -96,8 +96,14 @@ const App = () => {
         }
     }
   };
+
+  const handlerCardClick = (id) => {
+    console.log(id);
+  };
   const showArray = inputValue ? showingCard : allCardsOneType;
-  const cards = showArray.map((card) => <Card key={card.id} {...card} />);
+  const cards = showArray.map((card) => (
+    <Card key={card.id} onClick={handlerCardClick} {...card} />
+  ));
 
   const typeButtons = typesName.map((type, id) => (
     <Button

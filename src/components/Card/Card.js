@@ -1,17 +1,27 @@
 import React from "react";
 import "./Card.css";
 
-const Card = ({ id, name, imageUrl, supertype, subtype, rarity, number }) => {
+const Card = ({
+  id,
+  name,
+  imageUrl,
+  supertype,
+  subtype,
+  rarity,
+  number,
+  onClick,
+  types,
+}) => {
   return (
-    <div key={id} className="card">
+    <div key={id} className="card" onClick={() => onClick(id)}>
       <p className="card__title">
         <span className="card__name">{name}</span>
         Nr: {number}
       </p>
       <img src={imageUrl} alt="pokemon" className="card__img" />
       <p className="card__type-name">
-        <span className="card__type">Superttype: </span>
-        {supertype}
+        <span className="card__type">Type: </span>
+        {types[0]}
       </p>
       <p className="card__type-name">
         <span className="card__type">Subtype: </span> {subtype}

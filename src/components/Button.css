@@ -19,9 +19,15 @@
 }
 
 .catalog__button--smaller {
-  font-size: 12px;
+  font-size: 14px;
   padding: 5px;
   margin: 5px;
   width: 65px;
 
+}
+
+.catalog__button--active,
+.catalog__button--active:hover {
+  background-color: orangered;
+  color: white;
 }

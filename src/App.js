@@ -8,7 +8,11 @@ import Card from "./components/Card/Card";
 const numberFetchingCards = 500;
 
 const App = () => {
-  const [cardsArray, setCardsArray] = useState([]);
+  const [allCards, setAllCards] = useState([]);
+  const [allCardsOneType, setAllCardsOneType] = useState([]);
+  const [showingCard, setShowingCard] = useState([]);
+  const [typesName, setTypesName] = useState([]);
+
   const [cardsArrayFilter, setCardsArrayFilter] = useState([]);
   const [number, setNumber] = useState(numberFetchingCards);
   const [url, setUrl] = useState(
@@ -18,7 +22,9 @@ const App = () => {
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState(false);
   const [actualType, setActualType] = useState("All");
-
+  const [selectedCards, setSelectedCards] = useState([...allCards]);
+  const [cardsToMap, setCardsToMap] = useState([...allCards]);
+  let uniqTypes = [];
   const fetchData = useCallback(() => {
     setIsLoading(true);
     trackPromise(
@@ -31,9 +37,18 @@ const App = () => {
           return response.json();
         })
         .then(({ cards }) => {
+          const cardsWithTypes = cards.filter(({ types }) => types);
+          const typesArray = cardsWithTypes.map(({ types }) => types[0]);
+          const uniqTypesArray = [...new Set(typesArray)];
+
           setError(false);
-          setCardsArray([...cards]);
+          setAllCards([...cardsWithTypes]);
+          setAllCardsOneType([...cardsWithTypes]);
+          setShowingCard([...cardsWithTypes]);
           setIsLoading(false);
+          setTypesName(uniqTypesArray);
+          // setSelectedCards([...cards]);
+          // setCardsToMap([...cards]);
         })
         .catch((error) => {
           console.error(error);
@@ -55,21 +70,54 @@ const App = () => {
 
   const handlerInput = (e) => {
     const value = e.target.value;
-    let newCards = cardsArray.filter(({ name }) =>
+    let newCards = allCardsOneType.filter(({ name }) =>
       name.toLowerCase().includes(value.toLowerCase())
     );
-    setCardsArrayFilter(newCards);
+    setShowingCard([...newCards]);
     setInputValue(value);
+    // setCardsToMap([...newCards]);
   };
 
-  const cardsToMap = inputValue ? cardsArrayFilter : cardsArray;
-  const cards = cardsToMap.map((card) => <Card key={card.id} {...card} />);
+  const handlerButtonTypes = (name) => {
+    setActualType(name);
 
-  const cardsWithTypes = cardsToMap.filter(({ types }) => types);
-  const typesArray = cardsWithTypes.map(({ types }) => types[0]);
-  const uniqTypes = [...new Set(typesArray)];
-  const typeButtons = uniqTypes.map((type, id) => (
-    <Button key={id} nameClass="catalog__button--smaller" text={type} />
+    // const buttonName = name
+    const cards = allCards.filter((card) => card.types[0] === name);
+    switch (name) {
+      case "All":
+        setAllCardsOneType(allCards);
+        if (inputValue) {
+          let newCards = allCards.filter((card) =>
+            card.name.toLowerCase().includes(inputValue.toLowerCase())
+          );
+          setShowingCard([...newCards]);
+        }
+        break;
+      default:
+        setAllCardsOneType(cards);
+        if (inputValue) {
+          let newCards = cards.filter((card) =>
+            card.name.toLowerCase().includes(inputValue.toLowerCase())
+          );
+          setShowingCard([...newCards]);
+        }
+    }
+  };
+  const showArray = inputValue ? showingCard : allCardsOneType;
+  const cards = showArray.map((card) => <Card key={card.id} {...card} />);
+
+  // const typesArray = allCards.map(({ types }) => types[0]);
+  // uniqTypes = [...new Set(typesArray)];
+  const typeButtons = typesName.map((type, id) => (
+    <Button
+      key={id}
+      nameClass="catalog__button--smaller"
+      text={type}
+      onClick={handlerButtonTypes}
+      name={type}
+      actualType={actualType}
+      id={id}
+    />
   ));
   // console.log(types);
   // ["Grass", "Fighting", "Fairy", "Metal", "Lightning", "Water", "Psychic", "Darkness", "Fire", "Colorless", "Dragon"]
@@ -97,11 +145,16 @@ const App = () => {
       </div>
       {!isLoading && !error ? (
         <div className="catalog__buttons-wrapper">
-          <Button nameClass="catalog__button--smaller" text="All" />
+          <Button
+            nameClass="catalog__button--smaller"
+            text="All"
+            name="All"
+            onClick={handlerButtonTypes}
+            actualType={actualType}
+          />
           {typeButtons}
         </div>
       ) : null}
-      {error && <p className="error">Ooooops, something gone wrong</p>}{" "}
       <div className="catalog__cards">{cards}</div>
       <LoadingIndicator />
       {!inputValue && !isLoading && !error ? (
@@ -110,6 +163,7 @@ const App = () => {
           text={`Load ${numberFetchingCards} more cards`}
         />
       ) : null}
+      {error && <p className="error">Ooooops, something gone wrong</p>}{" "}
     </div>
   );
 };

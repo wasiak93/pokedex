@@ -31,3 +31,7 @@
   background-color: orangered;
   color: white;
 }
+
+.catalog__button--active {
+  transition: 0.3s;
+}

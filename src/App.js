@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import "./App.css";
 import LoadingIndicator from "./LoadingIndicator";
 import { trackPromise } from "react-promise-tracker";
-import Button from "./components/Button";
+import Button from "./components/Button/Button";
 import Card from "./components/Card/Card";
 
 const numberFetchingCards = 500;
@@ -100,7 +100,9 @@ const App = () => {
   const handlerCardClick = (id) => {
     console.log(id);
   };
+
   const showArray = inputValue ? showingCard : allCardsOneType;
+
   const cards = showArray.map((card) => (
     <Card key={card.id} onClick={handlerCardClick} {...card} />
   ));

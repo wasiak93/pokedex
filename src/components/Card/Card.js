@@ -20,7 +20,7 @@ const Card = ({
       <img src={imageUrl} alt="pokemon" className="card__img" />
       <p className="card__type-name">
         <span className="card__type">Type: </span>
-        {/* {types[0]} */}
+        {types[0]}
       </p>
       <p className="card__type-name">
         <span className="card__type">Subtype: </span> {subtype}

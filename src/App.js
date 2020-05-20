@@ -7,7 +7,7 @@ import Card from "./components/Card/Card";
 import Header from "./components/Header/Header";
 import Popup from "./components/Popup/Popup";
 
-const numberFetchingCards = 500;
+const numberFetchingCards = 4;
 
 const App = () => {
   const [allCards, setAllCards] = useState([]);
@@ -106,6 +106,9 @@ const App = () => {
     setCardInPopup(card);
   };
 
+  const handlerClosePopup = () => {
+    setOpenPopup(false);
+  };
   const showArray = inputValue ? showingCard : allCardsOneType;
 
   const cards = showArray.map((card) => (
@@ -124,7 +127,9 @@ const App = () => {
     />
   ));
 
-  const showPopup = openPopup && <Popup card={cardInPopup} />;
+  const showPopup = openPopup && (
+    <Popup card={cardInPopup} onClick={handlerClosePopup} />
+  );
 
   const showTypeButtons = !isLoading && !error && (
     <div className="catalog__buttons-wrapper">

@@ -10,9 +10,13 @@ const Card = ({
   number,
   onClick,
   types,
+  changeOrder,
 }) => {
   return (
-    <div key={id} className="card" onClick={onClick ? () => onClick(id) : null}>
+    <div
+      className={`card ${changeOrder && "card--change-order"}`}
+      onClick={onClick ? () => onClick(id) : null}
+    >
       <p className="card__title">
         <span className="card__name">{name}</span>
         Nr: {number}

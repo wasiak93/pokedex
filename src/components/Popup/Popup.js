@@ -1,40 +1,44 @@
 import React from "react";
 import "./Popup.css";
 import Card from "../Card/Card";
+import { useEffect } from "react";
+import PopupDetail from "./PopupDetail";
+import PopupDetailsTitle from "./PopupDetailsTitle";
+import PopupButton from "./PopupButton";
 
-const Popup = ({ card, onClick }) => {
+const Popup = ({ card, onClick, onKeyDown }) => {
   const cardObject = card[0];
+  const cardName = card[0].name;
+
   const attacks =
     cardObject.attacks &&
     cardObject.attacks.map(({ name, damage }) => (
-      <p className="card__title popup__title" key={name}>
-        <span className="card__name">{name}</span>
-        {damage}
-      </p>
+      <PopupDetailsTitle key={name} name={name} value={damage} />
     ));
   const weaknesses =
     cardObject.weaknesses &&
     cardObject.weaknesses.map(({ type, value }) => (
-      <p className="card__title popup__title" key={type}>
-        <span className="card__name">{type}</span>
-        {value}
-      </p>
+      <PopupDetailsTitle key={type} name={type} value={value} />
     ));
+
+  const detailsArray = [
+    { id: 0, title: "attacks", array: attacks },
+    { id: 1, title: "weaknesses", array: weaknesses },
+  ];
+
+  const details = detailsArray.map(({ title, array, id }) => (
+    <PopupDetail title={title} array={array} key={id} />
+  ));
+  useEffect(() => {
+    document.addEventListener("keydown", onKeyDown);
+  }, []);
   return (
     <div className="popup">
-      <button className="popup__button" onClick={onClick}>
-        X
-      </button>
-      <Card {...cardObject} />
-      <div className="popup__details--wrapper">
-        <div className="popup__details">
-          <p className="popup__title--bigger">Attacks</p>
-          {attacks}
-        </div>
-        <div className="popup__details">
-          <p className="popup__title--bigger"> Weaknesses</p>
-          {weaknesses}
-        </div>
+      <div className="popup__wrapper">
+        <PopupButton onClick={onClick} />
+        <h2 className="popup__title">{cardName} fight details</h2>
+        <Card changeOrder="true" {...cardObject} />
+        <div className="popup__fight-details">{details}</div>
       </div>
     </div>
   );

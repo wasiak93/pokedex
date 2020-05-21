@@ -109,6 +109,11 @@ const App = () => {
   const handlerClosePopup = () => {
     setOpenPopup(false);
   };
+  const handlerKeyDown = (e) => {
+    if (e.keyCode === 27) {
+      setOpenPopup(false);
+    }
+  };
   const showArray = inputValue ? showingCard : allCardsOneType;
 
   const cards = showArray.map((card) => (
@@ -128,7 +133,11 @@ const App = () => {
   ));
 
   const showPopup = openPopup && (
-    <Popup card={cardInPopup} onClick={handlerClosePopup} />
+    <Popup
+      card={cardInPopup}
+      onClick={handlerClosePopup}
+      onKeyDown={handlerKeyDown}
+    />
   );
 
   const showTypeButtons = !isLoading && !error && (

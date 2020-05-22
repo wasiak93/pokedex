@@ -123,7 +123,7 @@ const App = () => {
   const typeButtons = typesName.map((type, id) => (
     <Button
       key={id}
-      nameClass="catalog__button--smaller"
+      nameClass="button--smaller"
       text={type}
       onClick={handlerButtonTypes}
       name={type}
@@ -143,7 +143,7 @@ const App = () => {
   const showTypeButtons = !isLoading && !error && (
     <div className="catalog__buttons-wrapper">
       <Button
-        nameClass="catalog__button--smaller"
+        nameClass="button--smaller"
         text="All"
         name="All"
         onClick={handlerButtonTypes}
@@ -157,6 +157,8 @@ const App = () => {
     <Button
       onClick={handlerButton}
       text={`Load ${numberFetchingCards} more cards`}
+      nameClass="button-more"
+      actualType={actualType}
     />
   );
 

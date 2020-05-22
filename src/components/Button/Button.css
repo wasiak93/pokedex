@@ -1,4 +1,4 @@
-.catalog__button {
+.button {
   margin-top: 20px;
   align-self: center;
   outline: none;
@@ -7,18 +7,18 @@
   background-color: orange;
   color: white;
   border: none;
-  transition: 0.3s;
+  transition: .3s;
   cursor: pointer;
   border-radius: 3px;
   color: brown;
 }
 
-.catalog__button:hover {
+.button:hover {
   background-color: brown;
   color: orange;
 }
 
-.catalog__button--smaller {
+.button--smaller {
   font-size: 14px;
   padding: 5px;
   margin: 5px;
@@ -26,12 +26,12 @@
 
 }
 
-.catalog__button--active,
-.catalog__button--active:hover {
+.button--active,
+.button--active:hover {
   background-color: orangered;
   color: white;
 }
 
-.catalog__button--active {
+.button--active {
   transition: 0.3s;
 }

@@ -31,6 +31,7 @@ const Popup = ({ card, onClick, onKeyDown }) => {
   ));
   useEffect(() => {
     document.addEventListener("keydown", onKeyDown);
+    // eslint-disable-next-line
   }, []);
   return (
     <div className="popup">

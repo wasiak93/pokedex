@@ -1,5 +1,6 @@
 import React from "react";
 import "./Card.css";
+import CardTypeAcapit from "./CardTypeAcapit";
 
 const Card = ({
   id,
@@ -12,6 +13,13 @@ const Card = ({
   types,
   cardInPopup,
 }) => {
+  const typesArray = [
+    { id: 0, name: "Type", type: types[0] },
+    { id: 0, name: "Subtype", type: subtype },
+    { id: 0, name: "Rarity", type: rarity },
+  ];
+
+  const typeAcapits = typesArray.map((type) => <CardTypeAcapit {...type} />);
   return (
     <div
       className={`card ${cardInPopup && "card--in-popup"}`}
@@ -22,16 +30,7 @@ const Card = ({
         Nr: {number}
       </p>
       <img src={imageUrl} alt="pokemon" className="card__img" />
-      <p className="card__type-name">
-        <span className="card__type">Type: </span>
-        {types[0]}
-      </p>
-      <p className="card__type-name">
-        <span className="card__type">Subtype: </span> {subtype}
-      </p>
-      <p className="card__type-name">
-        <span className="card__type">Rarity: </span> {rarity}
-      </p>
+      {typeAcapits}
     </div>
   );
 };

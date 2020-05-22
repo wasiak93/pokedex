@@ -1,5 +1,6 @@
 import React from "react";
 import "./Header.css";
+import HeaderForm from "./HeaderForm";
 
 const Header = ({ inputValue, handlerInput }) => {
   return (
@@ -7,21 +8,7 @@ const Header = ({ inputValue, handlerInput }) => {
       <h1 className="header__title">
         Pokemon <span className="header__title--brown">catalog</span>
       </h1>
-      <form className="header__form">
-        <input
-          type="text"
-          value={inputValue}
-          className="header__input"
-          onChange={handlerInput}
-          placeholder="Search"
-        />
-        <div
-          className={
-            inputValue ? "header__line header__line--color" : "header__line"
-          }
-        ></div>
-        <div className="header__input-subtitle">{inputValue && "Search"}</div>
-      </form>
+      <HeaderForm inputValue={inputValue} handlerInput={handlerInput} />
     </div>
   );
 };

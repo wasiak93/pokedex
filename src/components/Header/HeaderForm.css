@@ -1,0 +1,29 @@
+.form__input {
+  font-family: "Lato", sans-serif;
+  width: 200px;
+  border: none;
+  padding-bottom: 5px;
+  font-size: 14px;
+  outline: none;
+  background-color: transparent;
+  color: white;
+}
+
+.form__input::placeholder {
+  color: white;
+}
+
+.form__input-subtitle {
+  padding-top: 5px;
+  font-size: 14px;
+  height: 35px;
+}
+
+.form__line {
+  height: 2px;
+  background-color: orange;
+}
+
+.form__line--color {
+  background-color: brown;
+}

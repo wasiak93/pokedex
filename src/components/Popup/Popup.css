@@ -44,9 +44,4 @@
   .popup__fight-details {
     order: 1;
   }
-
-  .card--change-order {
-    order: 2;
-  }
-
 }

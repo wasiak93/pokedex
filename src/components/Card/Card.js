@@ -10,11 +10,11 @@ const Card = ({
   number,
   onClick,
   types,
-  changeOrder,
+  cardInPopup,
 }) => {
   return (
     <div
-      className={`card ${changeOrder && "card--change-order"}`}
+      className={`card ${cardInPopup && "card--in-popup"}`}
       onClick={onClick ? () => onClick(id) : null}
     >
       <p className="card__title">

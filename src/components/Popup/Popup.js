@@ -37,7 +37,7 @@ const Popup = ({ card, onClick, onKeyDown }) => {
       <div className="popup__wrapper">
         <PopupButton onClick={onClick} />
         <h2 className="popup__title">{cardName} fight details</h2>
-        <Card changeOrder="true" {...cardObject} />
+        <Card cardInPopup="true" {...cardObject} />
         <div className="popup__fight-details">{details}</div>
       </div>
     </div>

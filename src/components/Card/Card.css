@@ -13,6 +13,10 @@
   background-color: rgba(255, 255, 255, 0.4);
 }
 
+.card--in-popup:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 .card__img {
   margin-bottom: 10px;
   width: 245px;
@@ -46,4 +50,10 @@
   padding-bottom: 5px;
   padding-top: 5px;
   font-weight: bold;
+}
+
+@media (min-width: 800px) {
+  .card--in-popup {
+    order: 2;
+  }
 }

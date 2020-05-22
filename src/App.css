@@ -19,11 +19,6 @@
   align-self: center;
 }
 
-.error {
-  font-size: 34px;
-  text-align: center;
-}
-
 .catalog__buttons-wrapper {
   display: flex;
   flex-wrap: wrap;

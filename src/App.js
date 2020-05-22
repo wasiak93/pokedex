@@ -6,6 +6,7 @@ import Button from "./components/Button/Button";
 import Card from "./components/Card/Card";
 import Header from "./components/Header/Header";
 import Popup from "./components/Popup/Popup";
+import ErrorAcapit from "./components/ErrorAcapit/ErrorAcapit";
 
 const numberFetchingCards = 4;
 
@@ -153,7 +154,7 @@ const App = () => {
     </div>
   );
 
-  const showButtonMore = !inputValue && !isLoading && !error && (
+  const ButtonMore = !inputValue && !isLoading && !error && (
     <Button
       onClick={handlerButton}
       text={`Load ${numberFetchingCards} more cards`}
@@ -162,9 +163,7 @@ const App = () => {
     />
   );
 
-  const showError = error && (
-    <p className="error">Ooooops, something gone wrong</p>
-  );
+  const errorInfo = error && <ErrorAcapit />;
 
   return (
     <div className="catalog">
@@ -173,8 +172,8 @@ const App = () => {
       {showPopup}
       <div className="catalog__cards">{cards}</div>
       <LoadingIndicator />
-      {showButtonMore}
-      {showError}
+      {ButtonMore}
+      {errorInfo}
     </div>
   );
 };

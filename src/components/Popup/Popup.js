@@ -3,7 +3,7 @@ import "./Popup.css";
 import Card from "../Card/Card";
 import { useEffect } from "react";
 import PopupDetail from "./PopupDetail";
-import PopupDetailsTitle from "./PopupDetailsTitle";
+import PopupDetailTitle from "./PopupDetailTitle";
 import PopupButton from "./PopupButton";
 
 const Popup = ({ card, onClick, onKeyDown }) => {
@@ -13,12 +13,12 @@ const Popup = ({ card, onClick, onKeyDown }) => {
   const attacks =
     cardObject.attacks &&
     cardObject.attacks.map(({ name, damage }) => (
-      <PopupDetailsTitle key={name} name={name} value={damage} />
+      <PopupDetailTitle key={name} name={name} value={damage} />
     ));
   const weaknesses =
     cardObject.weaknesses &&
     cardObject.weaknesses.map(({ type, value }) => (
-      <PopupDetailsTitle key={type} name={type} value={value} />
+      <PopupDetailTitle key={type} name={type} value={value} />
     ));
 
   const detailsArray = [

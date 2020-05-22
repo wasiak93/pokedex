@@ -1,7 +1,7 @@
 import React from "react";
-import "./PopupDetailsTitle.css";
+import "./PopupDetailTitle.css";
 
-const PopupDetailsTitle = ({ name, value }) => {
+const PopupDetailTitle = ({ name, value }) => {
   return (
     <p className="popup__detail-name" key={name}>
       {name}
@@ -10,4 +10,4 @@ const PopupDetailsTitle = ({ name, value }) => {
   );
 };
 
-export default PopupDetailsTitle;
+export default PopupDetailTitle;

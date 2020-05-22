@@ -1,7 +1,7 @@
 .card {
   display: flex;
   flex-direction: column;
-  padding: 0px 10px;
+  padding: 5px 10px;
   margin: 20px 15px;
   box-shadow: 0px 0px 4px 2px #ccc;
   transition: .3s;
@@ -18,38 +18,28 @@
 }
 
 .card__img {
-  margin-bottom: 10px;
+  margin: 5px 0 10px;
   width: 245px;
   align-self: center;
 }
 
-.card__type-name {
+.card__acapit {
   margin: 5px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .card__type-name:last-child {
   padding-bottom: 10px;
 }
 
-.card__title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 5px;
-}
-
 .card__type {
   font-weight: bold;
 }
 
-.card__name {
+.card__type--bigger {
   font-size: 16px;
-  margin-right: 5px;
-  padding-bottom: 5px;
-  padding-top: 5px;
-  font-weight: bold;
 }
 
 @media (min-width: 800px) {

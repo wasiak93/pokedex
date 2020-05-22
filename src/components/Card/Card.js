@@ -15,20 +15,22 @@ const Card = ({
 }) => {
   const typesArray = [
     { id: 0, name: "Type", type: types[0] },
-    { id: 0, name: "Subtype", type: subtype },
-    { id: 0, name: "Rarity", type: rarity },
+    { id: 1, name: "Subtype", type: subtype },
+    { id: 2, name: "Rarity", type: rarity },
   ];
 
-  const typeAcapits = typesArray.map((type) => <CardTypeAcapit {...type} />);
+  const numberWithSign = `Nr: ${number}`;
+
+  const typeAcapits = typesArray.map((type) => (
+    <CardTypeAcapit key={type.id} {...type} />
+  ));
+
   return (
     <div
-      className={`card ${cardInPopup && "card--in-popup"}`}
+      className={`card ${cardInPopup ? "card--in-popup" : ""}`}
       onClick={onClick ? () => onClick(id) : null}
     >
-      <p className="card__title">
-        <span className="card__name">{name}</span>
-        Nr: {number}
-      </p>
+      <CardTypeAcapit bigger="1" name={name} type={numberWithSign} />
       <img src={imageUrl} alt="pokemon" className="card__img" />
       {typeAcapits}
     </div>

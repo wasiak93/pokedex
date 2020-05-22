@@ -1,9 +1,12 @@
 import React from "react";
 
-const CardTypeAcapit = ({ name, type }) => {
+const CardTypeAcapit = ({ bigger, name, type }) => {
+  // console.log(bigger == true);
   return (
-    <p className="card__type-name">
-      <span className="card__type">{name} </span>
+    <p className="card__acapit">
+      <span className={`card__type ${bigger ? "card__type--bigger" : ""}`}>
+        {name}
+      </span>
       {type}
     </p>
   );

@@ -15,10 +15,6 @@
   font-size: 12px;
 }
 
-.catalog__loader {
-  align-self: center;
-}
-
 .catalog__buttons-wrapper {
   display: flex;
   flex-wrap: wrap;

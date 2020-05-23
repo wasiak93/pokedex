@@ -11,7 +11,7 @@ const HeaderForm = ({ inputValue, handlerInput }) => {
         onChange={handlerInput}
         placeholder="Search"
       />
-      <div className={`form__line ${inputValue && "form__line--color"}`}></div>
+      <div className={`form__line ${inputValue && "form__line--brown"}`}></div>
       <div>{inputValue && "Search"}</div>
     </form>
   );

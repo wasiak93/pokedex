@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import "./App.css";
-import LoadingIndicator from "./LoadingIndicator";
+import LoadingIndicator from "./components/LoadingIndicator/LoadingIndicator";
 import { trackPromise } from "react-promise-tracker";
 import Button from "./components/Button/Button";
 import Card from "./components/Card/Card";

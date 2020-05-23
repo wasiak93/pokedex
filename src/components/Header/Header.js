@@ -4,7 +4,7 @@ import HeaderForm from "./HeaderForm";
 
 const Header = ({ inputValue, handlerInput }) => {
   return (
-    <div className="catalog__header header">
+    <div className="header">
       <h1 className="header__title">
         Pokemon <span className="header__title--brown">catalog</span>
       </h1>

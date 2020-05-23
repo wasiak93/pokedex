@@ -1,4 +1,5 @@
 import React from "react";
+import "./CardTypeAcapit.css";
 
 const CardTypeAcapit = ({ bigger, name, type }) => {
   return (

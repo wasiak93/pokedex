@@ -23,25 +23,6 @@
   align-self: center;
 }
 
-.card__acapit {
-  margin: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.card__type-name:last-child {
-  padding-bottom: 10px;
-}
-
-.card__type {
-  font-weight: bold;
-}
-
-.card__type--bigger {
-  font-size: 16px;
-}
-
 @media (min-width: 800px) {
   .card--in-popup {
     order: 2;

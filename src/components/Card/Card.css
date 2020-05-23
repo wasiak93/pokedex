@@ -11,10 +11,12 @@
 
 .card:hover {
   background-color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
 }
 
 .card--in-popup:hover {
   background-color: rgba(255, 255, 255, 0.2);
+  cursor: default;
 }
 
 .card__img {

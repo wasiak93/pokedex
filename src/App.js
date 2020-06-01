@@ -61,10 +61,11 @@ const App = () => {
     fetchData();
   }, [fetchData]);
 
-  const handlerButton = () => {
+  const handlerButtonMore = () => {
     const newNumber = number + numberFetchingCards;
     setNumber(newNumber);
     setUrl(`https://api.pokemontcg.io/v1/cards?pageSize=${newNumber}`);
+    setActualType("All");
   };
 
   const handlerInput = (e) => {
@@ -156,7 +157,7 @@ const App = () => {
 
   const ButtonMore = !inputValue && !isLoading && !error && (
     <Button
-      onClick={handlerButton}
+      onClick={handlerButtonMore}
       text={`Load ${numberFetchingCards} more cards`}
       nameClass="button-more"
       actualType={actualType}
